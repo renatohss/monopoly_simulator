@@ -45,7 +45,11 @@ def start_game(max_rounds):
             if current_player.status == 'active':
                 dice = roll_d6()
                 position = current_player.position + dice
-                current_player.position = position if position <= 20 else 1
+                if position > 20:
+                    current_player.cash += 100
+                    current_player.position = 1
+                else:
+                    current_player.position = position
                 board_space = board[current_player.position]
 
                 if not board_space['owner']:
@@ -132,7 +136,7 @@ def main():
             {win_count["player2"][1]}: {round((win_count["player2"][0]/total_sims)*100, 2)}%\n \
             {win_count["player3"][1]}: {round((win_count["player3"][0]/total_sims)*100, 2)}%\n \
             {win_count["player4"][1]}: {round((win_count["player4"][0]/total_sims)*100, 2)}%\n')
-    print(f'{max_player} won most times, with {max_win} victories')
+    print(f'{max_player} ({win_count[max_player][1]}) won most times, with {max_win} victories')
             
 
 if __name__ == "__main__":

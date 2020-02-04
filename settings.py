@@ -2,7 +2,7 @@ from random import randint
 
 class Board:
     '''
-    This class creates a instance of the board with random values withing the range 100 - 350, calculates the rent for each one as 25%
+    This class creates a instance of the board with random values withing the range 100 - 550, calculates the rent for each one as 25%
     of the face value, sets the owner name to None and then builds the board as a dict object
     '''
     def __init__(self):
@@ -10,8 +10,8 @@ class Board:
     
     def create_board(self):
         board = {}
-        values = [randint(150, 500) for x in range(0, 20)]
-        rent = [randint(10, 60) for value in values]
+        values = [randint(200, 550) for x in range(0, 20)]
+        rent = [value*0.25 for value in values]
         zip_list = zip(values, rent)
         count = 1
         for item in zip_list:
